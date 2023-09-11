@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time_start: 2023-09-10 16:59:39
+  time_end: 2023-09-10 16:59:39
+  price: 9.99
+
+two:
+  time_start: 2023-09-10 16:59:39
+  time_end: 2023-09-10 16:59:39
+  price: 9.99

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  football_field: one
+  user: one
+  time_booking_start: 2023-09-10 16:59:54
+  time_booking_end: 2023-09-10 16:59:54
+  status: 1
+  voucher: one
+  total_price: 9.99
+
+two:
+  football_field: two
+  user: two
+  time_booking_start: 2023-09-10 16:59:54
+  time_booking_end: 2023-09-10 16:59:54
+  status: 1
+  voucher: two
+  total_price: 9.99
