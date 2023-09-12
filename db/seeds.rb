@@ -9,19 +9,47 @@
 
 require 'faker'
 include Devise::Controllers::Helpers
+def generate_password
+  lowercase_letters = ('a'..'z').to_a
+  uppercase_letters = ('A'..'Z').to_a
+  numbers = ('0'..'9').to_a
+  special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[', ']', '{', '}', '|', ':', ';', '<', '>', ',', '.', '?']
+
+  password = ''
+  password += lowercase_letters.sample
+  password += uppercase_letters.sample
+  password += numbers.sample
+  password += special_characters.sample
+
+  while password.length < 8
+    character_pool = [lowercase_letters, uppercase_letters, numbers, special_characters].sample
+    password += character_pool.sample
+  end
+
+  password.chars.shuffle.join
+end
+def generate_vietnamese_phone_number
+  prefix = ['03', '05', '07', '08', '09'].sample
+  number = prefix + rand(10**7...10**8).to_s
+  number.insert(4, ' ').insert(8, ' ')
+end
+
 # Tạo dữ liệu mẫu cho bảng "users"
+# phone_regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
 10.times do
-  password = Devise.friendly_token.first(8) # Tạo mật khẩu ngẫu nhiên độ dài 8 ký tự
+  password = generate_password
+  phone = generate_vietnamese_phone_number
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     gender: rand(0..1),
-    phone: Faker::PhoneNumber.phone_number,
+    # phone: Faker::PhoneNumber.unique.cell_phone.gsub('+84', '0'),
     address: Faker::Address.full_address,
     role: rand(0..1)
   )
   user.password = password
+  user.phone = phone
   user.encrypted_password = Devise::Encryptor.digest(User, password) # Mã hóa mật khẩu
   user.save!
 end

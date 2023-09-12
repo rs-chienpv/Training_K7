@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<h2>Rule User</h2>
+<% if @notice %>
+  <div class="flash flash-notice"><%= @notice %></div>
+<% end %>
+<% if user_signed_in? %>
+<h2><%= current_user.email%></h2>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {turbo_method: :delete} %>
+  <%= link_to "Edit registrarion", edit_user_registration_path %>
+<% else %>
+<%= link_to "Sign up", new_user_registration_path %>
+  <%= link_to "Sign in", new_user_session_path %>
+<% end %>
