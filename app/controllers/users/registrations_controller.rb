@@ -21,13 +21,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if verify_recaptcha
       super do |resource|
       flash[:success] = 'Bạn đã đăng ký thành công, vui lòng kiểm tra email để xác nhận!'
-      Rails.logger.debug("Flash message: #{flash[:success]}")
       end
     else
       flash.delete(:recaptcha_error)
       build_resource(sign_up_params)  
       resource.valid?
-      resource.errors.add(:base, 'Failed to validate reCAPTCHA')
+      resource.errors.add(:reCaptcha, 'Failed to validate reCAPTCHA')
       clean_up_passwords(resource)
       render :new
     end
