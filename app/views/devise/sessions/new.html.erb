@@ -35,6 +35,13 @@
       <span>Don't have a account? <%= link_to "Create an account", new_registration_path(resource_name) %></span><br>
       <p class='mt-3 mb-3'> Or </p>
       
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: 'btn-Google' do %>
+            <%= image_tag('btn_google_signin_light_normal_web.png') %>
+          <% end %><br />
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
