@@ -93,3 +93,5 @@ gem 'rubocop-rails'
 #ENV
 gem 'dotenv-rails'
 gem 'bootstrap', '~> 5.3.1'
+#Foreman
+gem 'foreman', github: 'ddollar/foreman'

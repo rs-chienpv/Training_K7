@@ -17,10 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    # Xác thực reCAPTCHA
     if verify_recaptcha
       super do |resource|
-      flash[:success] = 'Bạn đã đăng ký thành công, vui lòng kiểm tra email để xác nhận!'
+      flash[:success] = 'You have successfully registered, please check your email to confirm!'
       end
     else
       flash.delete(:recaptcha_error)

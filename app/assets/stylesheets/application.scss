@@ -13,7 +13,11 @@
  */
 
 @import "bootstrap";
-a {
+.link_signin {
     text-decoration: none;
-    // color: #fff;
+}
+
+.error_message {
+    color: red;
+    font-size: 13px;
 }
