@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
-
+class Admin::RegistrationsController < Devise::RegistrationsController
+  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -14,21 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
-  def create
-    if verify_recaptcha
-      super do |resource|
-      flash[:success] = 'You have successfully registered, please check your email to confirm!'
-      end
-    else
-      flash.delete(:recaptcha_error)
-      build_resource(sign_up_params)  
-      resource.valid?
-      resource.errors.add(:reCaptcha, 'Failed to validate reCAPTCHA')
-      clean_up_passwords(resource)
-      render :new
-    end
-  end
 
   # GET /resource/edit
   # def edit
@@ -54,12 +38,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
+  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:phone])
-  end
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
