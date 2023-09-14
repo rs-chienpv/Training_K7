@@ -1,39 +1,77 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="container">
+  <h1>Profile</h1>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <li class="breadcrumb-item">Users</li>
+      <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    </ol>
+  </nav>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row flex-lg-nowrap">
+  <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+    <div class="card p-3">
+      <div class="e-navlist e-navlist--active-bg">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= current_user.first_name<<' '<<current_user.last_name %></h4>
+                    <p class="mb-0"><%= current_user.email %></p>
+                  </div>
+                  <div class="text-center text-sm-right">
+                    <span class="badge badge-secondary">administrator</span>
+                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                  </div>
+                </div>
+              </div>
+              <ul class="nav nav-tabs">
+                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+              </ul>
+              <%= render 'users/profile/profile' %>
+              <%= render 'users/profile/change_password' %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+      <div class="col-12 col-md-3 mb-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="px-xl-3">
+              <button class="btn btn-block btn-secondary">
+                <i class="fa fa-sign-out"></i>
+                <%= link_to "Sign out", destroy_user_session_path, class: 'textButton_signout-color', method: :delete, data: {turbo_method: :delete} %>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<%= link_to "Back", :back %>
+</div>
+</div>

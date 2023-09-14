@@ -13,8 +13,13 @@
  */
 
 @import "bootstrap";
-a {
+.link_signin {
     text-decoration: none;
+}
+
+.error_message {
+    color: red;
+    font-size: 13px;
     // color: #fff;
 }
 
@@ -34,4 +39,12 @@ a {
     width: 50px;
     height: 50px;
     object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+.textButton_signout-color {
+    color: #fff;
 }

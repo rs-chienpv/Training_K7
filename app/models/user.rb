@@ -7,16 +7,16 @@ class User < ApplicationRecord
 
         #  [:phone, :first_name, :last_name, :gender, :address])
 
+  enum gender: { Male: 0, Female: 1, Other: 2 }
+
   validate :password_regex
-  validates :phone, format: { with: /(84|0[3|5|7|8|9])+([0-9]{8})\b/}, uniqueness: true, allow_nil: true, numericality: { only_integer: true }
+  validates :phone, allow_nil: true, format: { with: /\A(84|0[3|5|7|8|9])?([0-9]{8})?\z/ }
   validates :first_name, allow_nil: true, length: {maximum: 100}
   validates :last_name, allow_nil: true, length: {maximum: 100}
   validates :gender, allow_nil: true, numericality: { only_integer: true }
   validates :address, allow_nil: true, length: {maximum: 255}
 
   def self.from_omniauth(auth)
-    Rails.logger.debug "from_omniauth aaaaaaaaaaaaaaaaaaaaaaa #{Devise.friendly_token[0, 20].class}"
-
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email<<'_'<<auth.provider
       user.password = Devise.friendly_token[0, 20]<<'@1aA'
