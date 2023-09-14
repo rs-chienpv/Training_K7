@@ -20,4 +20,23 @@
 .error_message {
     color: red;
     font-size: 13px;
+    // color: #fff;
+}
+
+.btn-Google {
+    background-color: #fff;
+    border: none;
+}
+
+.btn-FB {
+    background-color: #fff;
+    border: none;
+    // width: 50px;
+    // height: 50px;
+}
+
+.img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
