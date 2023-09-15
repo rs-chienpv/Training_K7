@@ -1,0 +1,28 @@
+vi:
+  activerecord:
+    models:
+      user: 'Người dùng'
+    attributes:
+      user:
+        email: 'Email'
+        password: 'Mật khẩu'
+        password_confirmation: 'Nhập lại mật khẩu'
+        first_name: 'Họ'
+        last_name: 'Tên'
+        phone: 'Số điện thoại'
+        address: 'Địa chỉ'
+        gender: 'Giới tính'
+        select_gender: 'Lựa chọn giới tính'
+        genders:
+          Male: 'Nam'
+          Female: 'Nữ'
+          Other: 'Khác'
+  static_pages:
+    signup:
+      error_reCaptcha: 'không thể xác thực'
+      have_an_account: 'Bạn đã có tài khoản?'
+  global:
+    signup: 'Đăng ký'
+    signin: 'Đăng nhập'
+
+

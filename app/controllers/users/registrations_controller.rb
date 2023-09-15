@@ -5,9 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super do |resource|
+      render 'users/re'
+    end
+  end
 
   # POST /resource
   # def create
@@ -23,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash.delete(:recaptcha_error)
       build_resource(sign_up_params)  
       resource.valid?
-      resource.errors.add(:reCaptcha, 'Failed to validate reCAPTCHA')
+      resource.errors.add(:reCaptcha, t('static_pages.signup.error_reCaptcha'))
       clean_up_passwords(resource)
       render :new
     end
@@ -40,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def changeProfile
-    params[:phone]
+    
   end
   
   # DELETE /resource

@@ -95,3 +95,5 @@ gem 'dotenv-rails'
 gem 'bootstrap', '~> 5.3.1'
 #Foreman
 gem 'foreman', github: 'ddollar/foreman'
+#I18n
+gem "rails-i18n"

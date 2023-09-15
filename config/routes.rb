@@ -3,17 +3,23 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: {
     sessions: 'admin/sessions'
   }
-  devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks',
+# Move the omniauth_callbacks route outside the scope
+devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+scope '/(:locale)', locale: /en|vi/ do
+  # Skip the omniauth_callbacks for this devise_for call
+  devise_for :users, skip: :omniauth_callbacks, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
+
+  # Define the custom routes within the devise_scope block
   devise_scope :user do
     get '/users', to: 'devise/registrations#new'
-    patch 'users/changeProfile', to: 'devise/registrations#changeProfile'
     # get '/users/password', to: 'devise/passwords#new'
   end
+end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

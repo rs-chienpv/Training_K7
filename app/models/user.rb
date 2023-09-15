@@ -5,9 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :confirmable, omniauth_providers: [:google_oauth2, :facebook]
 
-        #  [:phone, :first_name, :last_name, :gender, :address])
-
-  enum gender: { Male: 0, Female: 1, Other: 2 }
+  enum gender: { male: 0, female: 1, other: 2 }
 
   validate :password_regex
   validates :phone, allow_nil: true, format: { with: /\A(84|0[3|5|7|8|9])?([0-9]{8})?\z/ }
