@@ -25,7 +25,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'chienpv@runsytems.net'
-  config.omniauth :google_oauth2, Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID), Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_SECRET)
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET']
   config.omniauth :facebook, Rails.application.credentials.dig(:FACEBOOK_OAUTH_CLIENT_ID), Rails.application.credentials.dig(:FACEBOOK_OAUTH_CLIENT_SECRET)
   # config.omniauth :facebook, "266246106295244", "730b7990967744c3336ff4c49b47c306"
   # Configure the class responsible to send e-mails.

@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     user = User.from_omniauth(auth)
-
+    Rails.logger.info "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAA"
     if user.present?
       sign_out_all_scopes
       flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
@@ -53,7 +53,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # The path used when OmniAuth fails
   def after_omniauth_failure_path_for(scope)
-    # super(scope)
     new_user_session_path
   end
 

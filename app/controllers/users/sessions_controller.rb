@@ -4,19 +4,25 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    csrf_token = form_authenticity_token
+      Rails.logger.info("CSRF token form login: #{csrf_token}")
+    super
+  end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    csrf_token = form_authenticity_token
+      Rails.logger.info("CSRF token sign in #{csrf_token}")
+    super
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    csrf_token = form_authenticity_token
+      Rails.logger.info("CSRF token sign out: #{csrf_token}")
+    super
+  end
 
   def after_sign_out_path_for(_resource_or_scope)
     new_user_session_path
