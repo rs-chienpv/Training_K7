@@ -17,8 +17,9 @@ scope '/(:locale)', locale: /en|vi/ do
   # Define the custom routes within the devise_scope block
   devise_scope :user do
     get '/users', to: 'devise/registrations#new'
-    # get '/users/password', to: 'devise/passwords#new'
   end
+
+  get '/showListFootballPitches', to: 'devise/football_pitches#index'
 end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

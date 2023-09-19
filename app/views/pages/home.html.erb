@@ -4,9 +4,6 @@
   <div class="flash flash-notice"><%= @notice %></div>
 <% end %>
 <% if user_signed_in? %>
-a
-<%= current_user.try(:user?).nil? %>
-a
 <h2><%= current_user.email%></h2>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {turbo_method: :delete} %>
   <%= link_to "Edit registrarion", edit_user_registration_path %>
@@ -15,3 +12,6 @@ a
   <%= link_to "Sign in", new_user_session_path %>
 <% end %>
 <br>
+
+<%= render 'users/football_pitches/index', locals: {listFootballPitches: @listFootballPitches} %>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>

@@ -97,3 +97,5 @@ gem 'bootstrap', '~> 5.3.1'
 gem 'foreman', github: 'ddollar/foreman'
 #I18n
 gem "rails-i18n"
+
+gem "image_processing", ">= 1.2"

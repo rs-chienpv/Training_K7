@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one_attached :avatar
+  has_many_attached :images
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,10 +10,10 @@ class User < ApplicationRecord
   enum gender: { male: 0, female: 1, other: 2 }
 
   validate :password_regex
-  validates :phone, allow_nil: true, format: { with: /\A(84|0[3|5|7|8|9])?([0-9]{8})?\z/ }
+  # validates :phone, allow_nil: true, format: { with: /\A(84|0[3|5|7|8|9])?([0-9]{8})?\z/ }
   validates :first_name, allow_nil: true, length: {maximum: 100}
   validates :last_name, allow_nil: true, length: {maximum: 100}
-  validates :gender, allow_nil: true, numericality: { only_integer: true }
+  validates :gender, allow_nil: true, inclusion: { in: genders.keys }
   validates :address, allow_nil: true, length: {maximum: 255}
 
   def self.from_omniauth(auth)
@@ -22,6 +24,10 @@ class User < ApplicationRecord
       user.skip_confirmation!
       user.save
     end
+  end
+
+  def image_as_thumbnail
+    avatar.variant(resize_to_limit: [150,150]).processed
   end
 
   private

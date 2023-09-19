@@ -39,7 +39,11 @@
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= current_user.first_name<<' '<<current_user.last_name %></h4>
+                    <%
+=begin%>
+ <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= current_user.first_name<<' '<<current_user.last_name %></h4> 
+<%
+=end%>
                     <p class="mb-0"><%= current_user.email %></p>
                   </div>
                   <div class="text-center text-sm-right">
@@ -51,7 +55,7 @@
               <ul class="nav nav-tabs">
                 <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
               </ul>
-              <%= render 'users/profile/profile' %>
+              <%= render 'users/profile/change_profile' %>
               <%= render 'users/profile/change_password' %>
             </div>
           </div>

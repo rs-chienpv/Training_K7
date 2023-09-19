@@ -1,0 +1,60 @@
+<table>
+	<thead>
+		<tr>
+			<th>
+				STT
+			</th>
+			<th>
+				Image
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Address
+			</th>
+			<th>
+				Capacity
+			</th>
+			<th>
+				Name type
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @listFootballPitches.each_with_index do |football_pitch, index| %>
+				<tr>
+					<th>
+						<%= index+1 %>
+					</th>
+					<th>
+						<% if football_pitch.image.nill %>
+							<%= image_tag football_pitch.image_as_thumbnail %>
+						<% else %>
+							<%= image_tag("image_default.png") %>
+						<% end %>
+					</th>
+					<th>
+						<%= football_pitch.name %>
+					</th>
+					<th>
+						<%= football_pitch.address %>
+					</th>
+					<th>
+						<%= football_pitch.capacity %>
+					</th>
+					<th>
+						<%= football_pitch.type.name %>
+					</th>
+					<th>
+						<%= football_pitch.type.description %>
+					</th>
+				</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
